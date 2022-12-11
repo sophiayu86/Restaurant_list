@@ -13,4 +13,4 @@
 3. 安裝 npm 套件: 在 Terminal 輸入 npm install 指令
 4. 安裝 nodemon 套件
 5. 啟動伺服器: 在 Terminal 輸入 nodemon app.js 指令
-6. 開啟任一瀏覽器瀏覽器輸入 http://localhost:3000 開始使用餐廳收集網
+6. 開啟任一瀏覽器輸入 http://localhost:3000 開始使用餐廳收集網
