@@ -99,4 +99,6 @@ header {
     }
     
   }
-  
+  .badge {
+    color: rgb(77, 28, 6);
+  }  
