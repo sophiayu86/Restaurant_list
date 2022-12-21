@@ -3,8 +3,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurant.json')
 const mongoose = require('mongoose') // 載入 mongoose
+const Restaurant = require('./models/restaurant') // 載入 Restaurant model
 
 // 加入這段 code, 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
@@ -28,7 +28,10 @@ app.set('view engine', 'handlebars')
 
 // routes setting
 app.get('/', (req, res) => {
-    res.render('index', { restaurants: restaurantList.results })
+  Restaurant.find() // 取出 model 裡的所有資料
+    .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
+    .then(restaurants => res.render('index', { restaurants })) // 將資料傳給 index 樣板
+    .catch(error => console.error(error)) // 錯誤處理
 })
 
 app.get('/restaurants/:restaurant_id', (req, res) => {  
