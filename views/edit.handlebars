@@ -1,5 +1,6 @@
+<link rel="stylesheet" href="/stylesheets/form.css" />
+<div class="form">
 <form action="/restaurants/{{ restaurant._id }}/edit" method="POST">
-  {{!-- <input type="text" placeholder="name" name="name" value="{{ restaurant.name }}"> --}}
   <div>
     <input type="number" placeholder="id" name="id" value="{{ restaurant.id }}" />
   </div>
@@ -34,3 +35,4 @@
   <button type="submit">Save</button>
   <a href="/">back</a>
 </form>
+</div>
