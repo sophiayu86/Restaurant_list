@@ -75,15 +75,8 @@ app.get('/restaurants/:id/edit', (req, res) => {
 app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const restaurant_id = req.body.id
-  const name = req.body.name
-  const name_en = req.body.name_en
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const google_map = req.body.google_map
-  const description = req.body.description
-  const rating = req.body.rating
+  const {name,name_en,category,image,location,phone,google_map,description,rating}= req.body
+  
   return Restaurant.findById(id)
     .then(restaurant => {
       restaurant.name = name
