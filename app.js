@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose') // 載入 mongoose
 const Restaurant = require('./models/restaurant') // 載入 Restaurant model
 const bodyParser = require('body-parser')// 引用 body-parser
+const methodOverride = require('method-override') 
 
 // 加入這段 code, 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
@@ -29,6 +30,8 @@ app.set('view engine', 'handlebars')
 
 // 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(methodOverride('_method'))
 
 // routes setting
 app.get('/', (req, res) => {
@@ -69,7 +72,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .then((restaurant) => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
 })
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const restaurant_id = req.body.id
   const name = req.body.name
@@ -98,7 +101,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .then(()=> res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())

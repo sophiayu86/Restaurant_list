@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/stylesheets/form.css" />
 <div class="form">
-<form action="/restaurants/{{ restaurant._id }}/edit" method="POST">
+<form action="/restaurants/{{ restaurant._id }}?_method=PUT" method="POST">
   <div>
     <input type="number" placeholder="id" name="id" value="{{ restaurant.id }}" />
   </div>
