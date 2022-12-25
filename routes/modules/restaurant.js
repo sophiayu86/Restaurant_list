@@ -2,19 +2,11 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant') // 載入 Restaurant model
 router.get('/new', (req, res) => {
-    return res.render('new')
+    return res.render('new', {layout: 'newNav'})
   })
 router.post('/', (req, res) => {
-    const name = req.body.name       // 從 req.body 拿出表單裡的 name 資料
     const restaurant_id = req.body.id
-    const name_en = req.body.name_en
-    const category = req.body.category
-    const image = req.body.image
-    const location = req.body.location
-    const phone = req.body.phone
-    const google_map = req.body.google_map
-    const description = req.body.description
-    const rating = req.body.rating
+    const {name,name_en,category,image,location,phone,google_map,description,rating}= req.body
     return Restaurant.create({restaurant_id,name,name_en,category,image,location,phone,google_map,rating,description})     // 存入資料庫
         .then(() => res.redirect('/')) // 新增完成後導回首頁
         .catch(error => console.log(error))
