@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
 })
 router.get('/:id/edit', (req, res) => {
     const id = req.params.id
-    return Restaurant.findById(id)
+    return Restaurant.findById(id)wefewfewfew
       .lean()
       .then((restaurant) => res.render('edit', { restaurant }))
       .catch(error => console.log(error))
